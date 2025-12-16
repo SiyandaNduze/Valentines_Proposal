@@ -1,7 +1,15 @@
 // Open envelope
 const envelope = document.getElementById('envelope');
+const letter = document.getElementById('letter');
+
+// Toggle only when envelope itself is clicked
 envelope.addEventListener('click', () => {
-envelope.classList.add('open');
+  envelope.classList.add('open');
+});
+
+// Prevent letter clicks from closing the envelope
+letter.addEventListener('click', (e) => {
+  e.stopPropagation();
 });
 
 
