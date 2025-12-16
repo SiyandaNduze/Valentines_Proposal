@@ -104,3 +104,66 @@ color: white;
 button:last-child {
 background: #ccc;
 }
+
+/* ============================
+   MOBILE RESPONSIVENESS
+   ============================ */
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  /* Bigger envelope on mobile */
+  .envelope {
+    width: 90vw;           /* Almost full screen */
+    height: 260px;         /* Taller envelope */
+    max-width: 380px;
+  }
+
+  .letter {
+    width: calc(100% - 20px);
+    left: 10px;
+  }
+
+  .envelope.open .letter {
+    height: 320px;         /* Taller letter */
+    top: -180px;           /* Slides out more */
+  }
+
+  .letter h1 {
+    font-size: 1.6rem;
+  }
+
+  .letter p {
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+
+  .buttons {
+    gap: 12px;
+  }
+
+  button {
+    flex: 1;
+    padding: 14px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 420px) {
+
+  .envelope {
+    height: 280px;
+  }
+
+  .envelope.open .letter {
+    height: 340px;
+    top: -200px;
+  }
+}
