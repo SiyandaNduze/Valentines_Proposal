@@ -2,26 +2,18 @@
 const envelope = document.getElementById('envelope');
 const letter = document.getElementById('letter');
 
-/* OPEN / CLOSE ONLY WHEN ENVELOPE IS TOUCHED */
-envelope.addEventListener('click', handleEnvelope);
-envelope.addEventListener('touchstart', handleEnvelope);
-
-function handleEnvelope(e) {
-  // If the letter was touched, ignore
+/* Toggle envelope ONLY when envelope itself is pressed */
+envelope.addEventListener('pointerdown', (e) => {
+  // If the letter was tapped, ignore
   if (e.target.closest('.letter')) return;
 
   envelope.classList.toggle('open');
-}
+});
 
-/* PREVENT LETTER FROM CLOSING ENVELOPE */
-letter.addEventListener('click', stopEvent);
-letter.addEventListener('touchstart', stopEvent);
-
-function stopEvent(e) {
+/* Prevent letter from triggering envelope */
+letter.addEventListener('pointerdown', (e) => {
   e.stopPropagation();
-}
-
-
+});
 
 // EmailJS setup
 (function () {
