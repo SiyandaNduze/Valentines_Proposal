@@ -2,15 +2,25 @@
 const envelope = document.getElementById('envelope');
 const letter = document.getElementById('letter');
 
-// Toggle only when envelope itself is clicked
-envelope.addEventListener('click', () => {
-  envelope.classList.add('open');
-});
+/* OPEN / CLOSE ONLY WHEN ENVELOPE IS TOUCHED */
+envelope.addEventListener('click', handleEnvelope);
+envelope.addEventListener('touchstart', handleEnvelope);
 
-// Prevent letter clicks from closing the envelope
-letter.addEventListener('click', (e) => {
+function handleEnvelope(e) {
+  // If the letter was touched, ignore
+  if (e.target.closest('.letter')) return;
+
+  envelope.classList.toggle('open');
+}
+
+/* PREVENT LETTER FROM CLOSING ENVELOPE */
+letter.addEventListener('click', stopEvent);
+letter.addEventListener('touchstart', stopEvent);
+
+function stopEvent(e) {
   e.stopPropagation();
-});
+}
+
 
 
 // EmailJS setup
