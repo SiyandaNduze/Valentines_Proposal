@@ -1,7 +1,7 @@
 // Open envelope
 const envelope = document.getElementById('envelope');
 envelope.addEventListener('click', () => {
-envelope.classList.toggle('open');
+envelope.classList.add('open');
 });
 
 

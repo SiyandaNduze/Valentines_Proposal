@@ -105,42 +105,37 @@ button:last-child {
 background: #ccc;
 }
 
-/* ============================
-   MOBILE RESPONSIVENESS
-   ============================ */
-@media (max-width: 768px) {
-
-  body {
-    overflow-x: hidden;
-  }
+/* =========================
+   MOBILE FIX (IMPORTANT)
+   ========================= */
+@media screen and (max-width: 768px) {
 
   .container {
     padding: 20px;
   }
 
-  /* Bigger envelope on mobile */
   .envelope {
-    width: 90vw;           /* Almost full screen */
-    height: 260px;         /* Taller envelope */
-    max-width: 380px;
+    width: 95vw !important;
+    height: 300px !important;
+    max-width: 420px;
   }
 
   .letter {
-    width: calc(100% - 20px);
+    width: calc(100% - 20px) !important;
     left: 10px;
   }
 
   .envelope.open .letter {
-    height: 320px;         /* Taller letter */
-    top: -180px;           /* Slides out more */
+    height: 360px !important;
+    top: -210px !important;
   }
 
   .letter h1 {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
 
   .letter p {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     line-height: 1.5;
   }
 
@@ -150,20 +145,7 @@ background: #ccc;
 
   button {
     flex: 1;
-    padding: 14px;
+    padding: 16px;
     font-size: 1.1rem;
-  }
-}
-
-/* Extra small phones */
-@media (max-width: 420px) {
-
-  .envelope {
-    height: 280px;
-  }
-
-  .envelope.open .letter {
-    height: 340px;
-    top: -200px;
   }
 }
