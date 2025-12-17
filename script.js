@@ -1,17 +1,19 @@
-// Open envelope
 const envelope = document.getElementById('envelope');
 const letter = document.getElementById('letter');
 
-/* OPEN / CLOSE ONLY WHEN ENVELOPE IS TOUCHED */
-envelope.addEventListener('click', handleEnvelope);
-envelope.addEventListener('touchstart', handleEnvelope);
-
-function handleEnvelope(e) {
-  // If the letter was touched, ignore
+/* Toggle envelope ONLY when envelope itself is pressed */
+envelope.addEventListener('pointerdown', (e) => {
+  // If the letter was tapped, ignore
   if (e.target.closest('.letter')) return;
 
   envelope.classList.toggle('open');
-}
+});
+
+/* Prevent letter from triggering envelope */
+letter.addEventListener('pointerdown', (e) => {
+  e.stopPropagation();
+});
+
 
 /* PREVENT LETTER FROM CLOSING ENVELOPE */
 letter.addEventListener('click', stopEvent);
@@ -69,18 +71,3 @@ const x = Math.random() * 200 - 100;
 const y = Math.random() * 200 - 100;
 noBtn.style.transform = `translate(${x}px, ${y}px)`;
 });
-
-
-// // Music autoplay on interaction
-// const music = document.getElementById('music');
-// document.body.addEventListener('click', () => {
-// music.play();
-// }, { once: true });)
-// .then(() => {
-// alert('Response sent! 💌');
-// })
-// .catch(err => {
-// alert('Error sending email');
-// console.error(err);
-// });
-// }
