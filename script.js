@@ -1,6 +1,36 @@
 const envelope = document.getElementById('envelope');
 const letter = document.getElementById('letter');
 
+/* =========================
+   PETAL GENERATOR
+   ========================= */
+
+const petalsContainer = document.querySelector('.petals');
+const petalImages = [
+  'images/petal1.png',
+  'images/petal2.png',
+  'images/petal3.png'
+];
+
+function createPetal() {
+  const petal = document.createElement('img');
+  petal.src = petalImages[Math.floor(Math.random() * petalImages.length)];
+  petal.classList.add('petal');
+
+  const sizeClass = ['small', 'medium', 'large'][Math.floor(Math.random() * 3)];
+  petal.classList.add(sizeClass);
+
+  petal.style.left = Math.random() * 100 + 'vw';
+  petal.style.animationDelay = Math.random() * 5 + 's';
+
+  petalsContainer.appendChild(petal);
+
+  setTimeout(() => petal.remove(), 35000);
+}
+
+setInterval(createPetal, 900);
+
+
 /* Toggle envelope ONLY when envelope itself is pressed */
 envelope.addEventListener('pointerdown', (e) => {
   // If the letter was tapped, ignore
@@ -46,22 +76,34 @@ console.error(err);
 });
 }
 
-// Confetti
 function startConfetti() {
-const duration = 3000;
-const end = Date.now() + duration;
+  // Heart confetti
+  confetti({
+    particleCount: 120,
+    spread: 90,
+    origin: { y: 0.6 },
+    shapes: ['heart'],
+    colors: ['#ff4d6d', '#ff758f', '#ffb3c6']
+  });
 
+  // Ring
+  const ring = document.createElement('div');
+  ring.className = 'ring';
+  ring.textContent = '💍';
+  document.body.appendChild(ring);
 
-const interval = setInterval(() => {
-if (Date.now() > end) {
-clearInterval(interval);
-}
-confetti({
-particleCount: 50,
-spread: 70,
-origin: { y: 0.6 }
-});
-}, 250);
+  // Sparkles
+  for (let i = 0; i < 20; i++) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = 50 + Math.random() * 10 - 5 + 'vw';
+    sparkle.style.top = 50 + Math.random() * 10 - 5 + 'vh';
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(), 1000);
+  }
+
+  setTimeout(() => ring.remove(), 2000);
 }
 
 // No button dodge

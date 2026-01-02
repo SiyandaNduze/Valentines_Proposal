@@ -72,6 +72,46 @@ overflow: hidden;
   to   { transform: translateY(-90%); }
 }
 
+/* =========================
+   RING SPARKLE
+   ========================= */
+
+.ring {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-size: 6rem;
+  z-index: 5;
+  animation: ringPop 1.5s ease forwards;
+}
+
+.sparkle {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #fff, transparent);
+  border-radius: 50%;
+  animation: sparkle 1s ease-out forwards;
+}
+
+@keyframes ringPop {
+  0% { transform: translate(-50%, -50%) scale(0); }
+  60% { transform: translate(-50%, -50%) scale(1.3); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes sparkle {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
 
 .container {
 display: flex;
@@ -193,5 +233,49 @@ background: #ccc;
     flex: 1;
     padding: 16px;
     font-size: 1.1rem;
+  }
+}
+
+/* =========================
+   REAL PNG PETALS
+   ========================= */
+
+.petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.petal {
+  position: absolute;
+  top: -10%;
+  width: 40px;
+  opacity: 0.8;
+  animation: fall linear infinite;
+}
+
+.petal.small {
+  width: 28px;
+  animation-duration: 18s;
+}
+
+.petal.medium {
+  width: 40px;
+  animation-duration: 25s;
+}
+
+.petal.large {
+  width: 55px;
+  animation-duration: 32s;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+  to {
+    transform: translateY(120vh) rotate(360deg);
   }
 }
